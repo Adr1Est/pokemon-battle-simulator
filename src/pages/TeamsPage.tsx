@@ -1,7 +1,7 @@
 import { useInfinitePokemon, usePokemonSearch } from "@/hooks/usePokemonData";
 import classes from "@/pages/TeamsPage.module.css";
 import { usePokemonFilter } from "@/store";
-import { X } from "lucide-react";
+import { CircleEllipsis, Loader, X } from "lucide-react";
 import { useId } from "react";
 import { Link } from "react-router";
 
@@ -59,7 +59,7 @@ export default function TeamsPage() {
             <X />
           </button>
         </form>
-        <div>
+        <div className={classes.pokemonList}>
           {
             isFetching 
               ? <p>Buscando Pokemon...</p>
@@ -67,8 +67,9 @@ export default function TeamsPage() {
                   pokemonList.map((pokemon: Pokemon) => (
                     <Link
                       to={`/pokemon/${pokemon.name}`}
+                      className={classes.pokemonLink}
                     >
-                      <p>{pokemon.name}</p>
+                      <span>{pokemon.name}</span>
                     </Link>
                   ))
                 )
@@ -76,10 +77,11 @@ export default function TeamsPage() {
           {
             !isFiltering && (
               <button
+                className={classes.loadButton}
                 onClick={() => fetchNextPage()}
                 disabled={!hasNextPage || isFetchingNextPage}
               >
-                {isFetchingNextPage ? "Cargando..." : "Cargar más"}
+                {isFetchingNextPage ? <Loader /> : <CircleEllipsis />}
               </button>
             )
           }

@@ -8,7 +8,10 @@
 }
 
 .filterRender{
-  width: 300px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
 .form{
@@ -34,4 +37,47 @@
   height: 100%;
   border: 0;
   padding: 0;
+}
+
+.pokemonList{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-height: 500px;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.pokemonLink{
+  width: 90%;
+  border: 1px solid #fb2c36;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  height: 20px;
+  text-decoration: none;
+  color: var(--darkText);
+  &&:hover{
+    font-size: 1.1rem;
+  }
+}
+
+.loadButton{
+  border-radius: 0.5rem;
+  border: 0;
+  background-color: #009689;
+  color: var(--darkText);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem;
+  &&:hover{
+    background-color: #02b8a8;
+  }
+}
+
+@media (prefers-color-scheme: light){
+  .pokemonLink{
+    color: var(--lightText);
+  }
 }
