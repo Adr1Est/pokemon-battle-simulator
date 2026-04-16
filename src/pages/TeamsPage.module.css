@@ -22,8 +22,11 @@
   border: 0;
   height: 100%;
   border-radius: 0 1rem 1rem 0 ;
-  background-color: #ffa2a2;
+  background-color: #fb2c36;
   color: #f2f2f2;
+  &&:disabled{
+    background-color: #ffa2a2;
+  }
 }
 
 .teamsFilterInput{
