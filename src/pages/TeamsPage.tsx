@@ -5,6 +5,11 @@ import { X } from "lucide-react";
 import { useId } from "react";
 import { Link } from "react-router";
 
+interface Pokemon {
+  name: string; 
+  url: string; 
+}
+
 export default function TeamsPage() {
   const inputFilterId = useId();
   const filter = usePokemonFilter((state) => state.filter);
@@ -27,7 +32,7 @@ export default function TeamsPage() {
   if(isError) return <p>Error al cargar datos...</p>;
 
   const infinitePokemon = data?.pages.flatMap(page => page.results) || [];
-  const searchPokemon = allPokemonList?.results.filter((p) => p.name.toLowerCase().includes(filter.toLowerCase())) || [];
+  const searchPokemon = allPokemonList?.results.filter((p: Pokemon) => p.name.toLowerCase().includes(filter.toLowerCase())) || [];
   console.log(searchPokemon)
 
   const pokemonList = isFiltering ? searchPokemon : infinitePokemon;
@@ -59,7 +64,7 @@ export default function TeamsPage() {
             isFetching 
               ? <p>Buscando Pokemon...</p>
               : (
-                  pokemonList.map((pokemon: { name: string; url: string; }) => (
+                  pokemonList.map((pokemon: Pokemon) => (
                     <Link
                       to={`/pokemon/${pokemon.name}`}
                     >
