@@ -1,8 +1,9 @@
-import { useInfinitePokemon, usePokemonSearch } from "@/hooks/usePokemonData";
+import { useInfinitePokemon, usePokemonSearch, useSinglePokemonInfo } from "@/hooks/usePokemonData";
 import classes from "@/pages/TeamsPage.module.css";
-import { usePokemonFilter } from "@/store";
+import { usePokemonFilter, useTeamBuilder } from "@/store";
+import { mapPokemon } from "@/utils/pokemon.utils";
 import { ArrowBigRight, CircleEllipsis, Loader, X } from "lucide-react";
-import { useId } from "react";
+import { useEffect, useId, useState } from "react";
 
 interface Pokemon {
   name: string; 
@@ -14,6 +15,9 @@ export default function TeamsPage() {
   const filter = usePokemonFilter((state) => state.filter);
   const setFilter = usePokemonFilter((state) => state.setFilter)
   const resetFilter = usePokemonFilter((state) => state.resetFilter)
+  const addPokemonToTeam = useTeamBuilder((state) => state.addPokemonToTeam);
+  const [selectedUrl, setSelectedUrl] = useState<string | undefined>(undefined);
+  const { data: pokemonInfo, isLoading: isPokemonInfoLoading } = useSinglePokemonInfo(selectedUrl);
 
   const {
     data,
@@ -26,6 +30,12 @@ export default function TeamsPage() {
 
   const isFiltering = filter.trim().length > 0;
   const { data: allPokemonList, isFetching } = usePokemonSearch(isFiltering);
+
+  useEffect(() => {
+    if(pokemonInfo){
+      addPokemonToTeam(mapPokemon(pokemonInfo));
+    }
+  }, [pokemonInfo]);
 
   if(isLoading) return <p>Cargando datos...</p>;
   if(isError) return <p>Error al cargar datos...</p>;
@@ -65,7 +75,9 @@ export default function TeamsPage() {
                   pokemonList.map((pokemon: Pokemon) => (
                     <div key={pokemon.name} className={`${classes.pokemonLink} glassmorphism`}>
                       <span>{pokemon.name}</span>
-                      <button>
+                      <button
+                        onClick={() => setSelectedUrl(pokemon.url)}
+                      >
                         <ArrowBigRight />
                       </button>
                     </div>
