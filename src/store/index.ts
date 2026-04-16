@@ -1,0 +1,1 @@
+export { usePokemonFilter } from "@/store/usePokemonFilter";
