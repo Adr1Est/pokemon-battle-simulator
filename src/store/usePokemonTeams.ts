@@ -9,7 +9,7 @@ interface PokemonTeamsStore {
   deleteTeam: (teamId: string) => void;
 
   addPokemonToTeam: (teamId: string, pokemon: Pokemon) => void;
-  removePokemonFromTeam: (teamId: string, pokemonId: string) => void;
+  removePokemonFromTeam: (teamId: string, pokemonId: number) => void;
 
   resetTeams: () => void;
 }

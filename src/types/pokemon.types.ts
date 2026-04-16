@@ -4,7 +4,7 @@ export interface PokemonTeam {
 }
 
 export interface Pokemon {
-  id: string;
+  id: number;
   name: string;
   image: string;
   types: string[];
