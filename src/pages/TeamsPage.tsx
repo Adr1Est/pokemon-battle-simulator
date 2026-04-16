@@ -1,9 +1,8 @@
 import { useInfinitePokemon, usePokemonSearch } from "@/hooks/usePokemonData";
 import classes from "@/pages/TeamsPage.module.css";
 import { usePokemonFilter } from "@/store";
-import { CircleEllipsis, Loader, X } from "lucide-react";
+import { ArrowBigRight, CircleEllipsis, Loader, X } from "lucide-react";
 import { useId } from "react";
-import { Link } from "react-router";
 
 interface Pokemon {
   name: string; 
@@ -64,12 +63,12 @@ export default function TeamsPage() {
               ? <p>Buscando Pokemon...</p>
               : (
                   pokemonList.map((pokemon: Pokemon) => (
-                    <Link
-                      to={`/pokemon/${pokemon.name}`}
-                      className={`${classes.pokemonLink} glassmorphism`}
-                    >
+                    <div key={pokemon.name} className={`${classes.pokemonLink} glassmorphism`}>
                       <span>{pokemon.name}</span>
-                    </Link>
+                      <button>
+                        <ArrowBigRight />
+                      </button>
+                    </div>
                   ))
                 )
           }
