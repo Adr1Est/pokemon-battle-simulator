@@ -67,7 +67,7 @@ export default function TeamsPage() {
                   pokemonList.map((pokemon: Pokemon) => (
                     <Link
                       to={`/pokemon/${pokemon.name}`}
-                      className={classes.pokemonLink}
+                      className={`${classes.pokemonLink} glassmorphism`}
                     >
                       <span>{pokemon.name}</span>
                     </Link>
@@ -87,7 +87,7 @@ export default function TeamsPage() {
           }
         </div>
       </div>
-      <div>
+      <div className={classes.teamBuilderMainContainer}>
         <h1>Crea tu equipo</h1>
       </div>
     </div>

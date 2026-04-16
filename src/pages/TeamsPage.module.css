@@ -50,15 +50,17 @@
 }
 
 .pokemonLink{
+  position: relative;
   width: 90%;
-  border: 1px solid #fb2c36;
   border-radius: 0.5rem;
   padding: 0.5rem;
-  height: 20px;
+  height: 25px;
   text-decoration: none;
   color: var(--darkText);
+  transition: background 0.2s ease, transform 0.2s ease;
   &&:hover{
-    font-size: 1.1rem;
+    background: rgba(0,0,0,0.05);
+    transform: translateX(4px);
   }
 }
 
@@ -74,6 +76,11 @@
   &&:hover{
     background-color: #02b8a8;
   }
+}
+
+.teamBuilderMainContainer{
+  display: flex;
+  flex-direction: column;
 }
 
 @media (prefers-color-scheme: light){
