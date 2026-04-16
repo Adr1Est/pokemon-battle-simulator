@@ -10,3 +10,23 @@ export const mapPokemon = (data: PokemonApiResponse): Pokemon => ({
     baseStat: s.base_stat,
   })),
 });
+
+export const pokemonTypeEmojis: Record<string, string> = {
+  fire: "🔥",
+  water: "💧",
+  grass: "🌿",
+  electric: "⚡",
+  ice: "❄️",
+  bug: "🐛",
+  rock: "🪨",
+  ghost: "👻",
+  psychic: "🧠",
+  steel: "🔩",
+  fairy: "✨",
+  flying: "🦅",
+  poison: "☠️",
+  ground: "🌍",
+  normal: "⚪",
+  dragon: "🐉",
+  fighting: "🥊",
+};

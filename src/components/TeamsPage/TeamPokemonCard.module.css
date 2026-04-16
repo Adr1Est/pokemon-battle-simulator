@@ -1,0 +1,22 @@
+.teamPokemonContainer{
+  width: 90%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.containerInfo1{
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+
+.typesContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+  width: auto;
+  font-size: 1.5rem;
+  background-color: #657181;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+}
