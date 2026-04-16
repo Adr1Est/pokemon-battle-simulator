@@ -1,5 +1,5 @@
-import { fetchInfinitePokemonList } from "@/services/pokemon.service";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { fetchAllPokemon, fetchInfinitePokemonList } from "@/services/pokemon.service";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 export const useInfinitePokemon = () => {
   return useInfiniteQuery({
@@ -12,3 +12,11 @@ export const useInfinitePokemon = () => {
     },
   });
 }
+
+export const usePokemonSearch = (enabled: boolean) => {
+  return useQuery({
+    queryKey: ["pokemonSearch"],
+    queryFn: fetchAllPokemon,
+    enabled,
+  });
+};

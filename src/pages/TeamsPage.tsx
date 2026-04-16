@@ -1,13 +1,36 @@
+import { useInfinitePokemon, usePokemonSearch } from "@/hooks/usePokemonData";
 import classes from "@/pages/TeamsPage.module.css";
 import { usePokemonFilter } from "@/store";
 import { X } from "lucide-react";
 import { useId } from "react";
+import { Link } from "react-router";
 
 export default function TeamsPage() {
   const inputFilterId = useId();
   const filter = usePokemonFilter((state) => state.filter);
   const setFilter = usePokemonFilter((state) => state.setFilter)
   const resetFilter = usePokemonFilter((state) => state.resetFilter)
+
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+  } = useInfinitePokemon();
+
+  const isFiltering = filter.trim().length > 0;
+  const { data: allPokemonList, isFetching } = usePokemonSearch(isFiltering);
+
+  if(isLoading) return <p>Cargando datos...</p>;
+  if(isError) return <p>Error al cargar datos...</p>;
+
+  const infinitePokemon = data?.pages.flatMap(page => page.results) || [];
+  const searchPokemon = allPokemonList?.results.filter((p) => p.name.toLowerCase().includes(filter.toLowerCase())) || [];
+  console.log(searchPokemon)
+
+  const pokemonList = isFiltering ? searchPokemon : infinitePokemon;
 
   return(
     <div className={classes.teamsMainContainer}>
@@ -32,11 +55,33 @@ export default function TeamsPage() {
           </button>
         </form>
         <div>
-
+          {
+            isFetching 
+              ? <p>Buscando Pokemon...</p>
+              : (
+                  pokemonList.map((pokemon: { name: string; url: string; }) => (
+                    <Link
+                      to={`/pokemon/${pokemon.name}`}
+                    >
+                      <p>{pokemon.name}</p>
+                    </Link>
+                  ))
+                )
+          }
+          {
+            !isFiltering && (
+              <button
+                onClick={() => fetchNextPage()}
+                disabled={!hasNextPage || isFetchingNextPage}
+              >
+                {isFetchingNextPage ? "Cargando..." : "Cargar más"}
+              </button>
+            )
+          }
         </div>
       </div>
       <div>
-
+        
       </div>
     </div>
   )
