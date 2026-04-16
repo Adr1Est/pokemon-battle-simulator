@@ -1,10 +1,10 @@
 import TeamPokemonCard from "@/components/TeamsPage/TeamPokemonCard";
 import { useInfinitePokemon, usePokemonSearch, useSinglePokemonInfo } from "@/hooks/usePokemonData";
 import classes from "@/pages/TeamsPage.module.css";
-import { usePokemonFilter, useTeamBuilder } from "@/store";
+import { usePokemonFilter, usePokemonTeams, useTeamBuilder } from "@/store";
 import type { Pokemon } from "@/types/pokemon.types";
 import { capitalize } from "@/utils/capitalize.utils";
-import { mapPokemon } from "@/utils/pokemon.utils";
+import { createPokemonTeamWithId, mapPokemon } from "@/utils/pokemon.utils";
 import { ArrowBigRight, CircleEllipsis, Loader, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
@@ -20,6 +20,8 @@ export default function TeamsPage() {
   const resetFilter = usePokemonFilter((state) => state.resetFilter)
   const teamLayout = useTeamBuilder((state) => state.teamLayout);
   const addPokemonToTeam = useTeamBuilder((state) => state.addPokemonToTeam);
+  const resetTeam = useTeamBuilder((state) => state.resetTeam);
+  const createTeam = usePokemonTeams((state) => state.createTeam);
   const [selectedUrl, setSelectedUrl] = useState<string | undefined>(undefined);
   const { data: pokemonInfo, isLoading: isPokemonInfoLoading } = useSinglePokemonInfo(selectedUrl);
 
@@ -34,6 +36,11 @@ export default function TeamsPage() {
 
   const isFiltering = filter.trim().length > 0;
   const { data: allPokemonList, isFetching } = usePokemonSearch(isFiltering);
+
+  const handleClick = () => {
+    createTeam(createPokemonTeamWithId(teamLayout));
+    resetTeam();
+  }
 
   useEffect(() => {
     if(pokemonInfo){
@@ -102,7 +109,21 @@ export default function TeamsPage() {
         </div>
       </div>
       <div className={classes.teamBuilderMainContainer}>
-        <h1>Crea tu equipo</h1>
+        <div className={`${classes.headerContainer} glassmorphism`}>
+          <h1>Crea tu equipo</h1>
+          <button
+            onClick={handleClick}
+            disabled={teamLayout.length !== 6}
+          >
+            Crear equipo
+          </button>
+          {
+            teamLayout.length > 6 && (
+              <p className={classes.warn}>Los equipos deben ser de máximo 6 Pokemon. Elimina {teamLayout.length - 6}</p>
+            )
+          }
+          
+        </div>
         <ul className={classes.renderTeamContainer}>
           {
             isPokemonInfoLoading

@@ -30,3 +30,11 @@ export const pokemonTypeEmojis: Record<string, string> = {
   dragon: "🐉",
   fighting: "🥊",
 };
+
+export const createPokemonTeamWithId = (pokemonTeam: Pokemon[]) => {
+  const id = crypto.randomUUID();
+  return {
+    id,
+    team: pokemonTeam,
+  };
+};

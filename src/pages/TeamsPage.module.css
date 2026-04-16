@@ -9,6 +9,39 @@
   max-height: 600px;
 }
 
+.headerContainer{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  justify-content: space-between;
+  && > button{
+    border: 0;
+    background-color: #009689;
+    color: var(--darkText);
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    align-self: start;
+    &&:hover{
+      background-color: #02b8a8;
+    }
+    &&:disabled{
+      background-color: #496967;
+      color: #55817e;
+    }
+  }
+}
+
+.warn{
+  position: absolute;
+  bottom: 0;
+  right: 15px;
+  margin: 0;
+  color: #ff2056;
+  font-weight: 600;
+}
+
 .filterRender{
   width: 350px;
   display: flex;
