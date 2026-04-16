@@ -111,13 +111,14 @@ export default function TeamsPage() {
                 ? teamLayout.map((p: Pokemon) => (
                     <TeamPokemonCard
                       key={p.id}
+                      id={p.id}
                       name={p.name}
                       image={p.image}
                       types={p.types}
                       stats={p.stats}
                     />
                   ))
-                : <li>Crea tu equipo</li>
+                : <li>Selecciona los Pokemon que quieres en tu equipo</li>
           }
         </ul>
       </div>

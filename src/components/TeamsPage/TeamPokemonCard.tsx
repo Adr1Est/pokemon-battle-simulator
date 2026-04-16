@@ -1,17 +1,21 @@
 import classes from "@/components/TeamsPage/TeamPokemonCard.module.css";
+import { useTeamBuilder } from "@/store";
 import type { Stat } from "@/types/pokemon.types";
 import { capitalize } from "@/utils/capitalize.utils";
 import { pokemonTypeEmojis } from "@/utils/pokemon.utils";
 import { Trash2 } from "lucide-react";
 
 interface Props {
+  id: number;
   name: string;
   image: string;
   types: string[];
   stats: Stat[];
 }
 
-export default function TeamPokemonCard({ name, image, types, stats}: Props) {
+export default function TeamPokemonCard({ id, name, image, types, stats}: Props) {
+  const removePokemonFromTeam = useTeamBuilder((state) => state.removePokemonFromTeam);
+
   return(
     <li className={`${classes.teamPokemonContainer} glassmorphism`}>
       <div className={classes.containerInfo1}>
@@ -37,6 +41,7 @@ export default function TeamPokemonCard({ name, image, types, stats}: Props) {
         </ul>
         <button
           className={classes.deletePokemonButton}
+          onClick={() => removePokemonFromTeam(id)}
         >
           <Trash2 />
           <span>Quitar del equipo</span>
