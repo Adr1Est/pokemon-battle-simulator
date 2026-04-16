@@ -47,6 +47,8 @@
   min-height: 500px;
   max-height: 500px;
   overflow-y: auto;
+  scrollbar-color: #9f0712 var(--darkBgColor);
+  scrollbar-width: thin;
 }
 
 .pokemonLink{
@@ -86,5 +88,9 @@
 @media (prefers-color-scheme: light){
   .pokemonLink{
     color: var(--lightText);
+  }
+
+  .pokemonList{
+    scrollbar-color: var(--lightBgColor);
   }
 }
