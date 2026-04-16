@@ -88,7 +88,7 @@ export default function TeamsPage() {
         </div>
       </div>
       <div>
-        
+        <h1>Crea tu equipo</h1>
       </div>
     </div>
   )
