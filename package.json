@@ -1,8 +1,13 @@
 {
   "name": "pokemon_battle_simulator",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "author": {
+    "name": "Adrián Estévez Salamanca",
+    "email": "adrianestevezsalamanca@gmail.com",
+    "url": "https://github.com/Adr1Est"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
