@@ -1,10 +1,10 @@
-import '@/App.css'
+import classes from '@/App.module.css'
 import { Outlet } from 'react-router'
 
 function App() {
 
   return (
-    <main>
+    <main className={classes.mainContainer}>
       <Outlet />
     </main>
   )
