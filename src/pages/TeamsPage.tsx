@@ -33,7 +33,6 @@ export default function TeamsPage() {
 
   const infinitePokemon = data?.pages.flatMap(page => page.results) || [];
   const searchPokemon = allPokemonList?.results.filter((p: Pokemon) => p.name.toLowerCase().includes(filter.toLowerCase())) || [];
-  console.log(searchPokemon)
 
   const pokemonList = isFiltering ? searchPokemon : infinitePokemon;
 
