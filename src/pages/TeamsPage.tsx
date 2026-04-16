@@ -114,6 +114,7 @@ export default function TeamsPage() {
                       name={p.name}
                       image={p.image}
                       types={p.types}
+                      stats={p.stats}
                     />
                   ))
                 : <li>Crea tu equipo</li>
