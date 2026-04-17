@@ -1,4 +1,4 @@
-import { fetchAllPokemon, fetchInfinitePokemonList, fetchPokemonInfo } from "@/services/pokemon.service";
+import { fetchAllPokemon, fetchInfinitePokemonList, fetchPokemonInfo, fetchPokemonListByType, fetchPokemonTypes } from "@/services/pokemon.service";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 export const useInfinitePokemon = () => {
@@ -26,5 +26,20 @@ export const useSinglePokemonInfo = (pokemonUrl) => {
     queryKey: ["singlePokemon", pokemonUrl],
     queryFn: () => fetchPokemonInfo(pokemonUrl),
     enabled: !!pokemonUrl, // Solo se ejecutará si hay URL
+  });
+};
+
+export const useSearchPokemonByType = (type) => {
+  return useQuery({
+    queryKey: ["pokemonByType", type],
+    queryFn: () => fetchPokemonListByType(type),
+    enabled: !!type,
+  });
+};
+
+export const usePokemonTypes = () => {
+  return useQuery({
+    queryKey: ["pokemonTypes"],
+    queryFn: fetchPokemonTypes,
   });
 };
