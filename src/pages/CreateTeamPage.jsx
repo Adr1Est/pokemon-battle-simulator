@@ -144,11 +144,8 @@ export default function CreateTeamPage() {
           >
             Crear equipo
           </button>
-          {
-            teamLayout.length > 6 && (
-              <p className={classes.warn}>Los equipos deben ser de máximo 6 Pokemon. Elimina {teamLayout.length - 6}</p>
-            )
-          }
+          
+          <p className={`${classes.teamInfo} ${teamLayout.length > 6 ? classes.warn : ""}`}>{`${teamLayout.length}/6`}</p>    
         </div>
         <ul className={classes.renderTeamContainer}>
           {
