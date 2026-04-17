@@ -7,7 +7,7 @@ export const useTeamBuilder = create()(
       teamLayout: [],
 
       addPokemonToTeam: (pokemon) => set((state) => ({
-        teamLayout: state.teamLayout.some((p) => p.id === pokemon.id)
+        teamLayout: state.teamLayout.some((p) => p.name === pokemon.name)
           ? state.teamLayout
           : [...state.teamLayout, pokemon]
       })),

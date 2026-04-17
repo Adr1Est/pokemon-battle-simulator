@@ -1,5 +1,5 @@
 export const mapPokemon = (data) => ({
-  id: data.id,
+  id: crypto.randomUUID(),
   name: data.name,
   image: data.sprites.other["official-artwork"].front_default,
   types: data.types.map((t) => t.type.name),
