@@ -17,8 +17,31 @@ h2{
   padding: 0;
 }
 
+.btnGroup{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btnGroup > div{
+  display: flex;
+  flex-direction: column;
+}
+
+.btnGroup > div > p{
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.btnGroup > div > div{
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+}
+
 .trashBtn{
   border: 0;
+  width: 100px;
   background-color: #9f0712;
   color: var(--darkText);
   border-radius: 0.5rem;
@@ -27,5 +50,27 @@ h2{
   height: 30px;
   &&:hover{
     background-color: #fb2c36;
+  }
+}
+
+.shuffleBtn{
+  border: 0;
+  background-color: #ad46ff;
+  border-radius: 0.5rem;
+  color: var(--darkText);
+  &&:active{
+    background-color: #9810fa;
+    color: #450772;
+  }
+}
+
+.attackBtn{
+  border: 0;
+  background-color: #ff8903;
+  border-radius: 0.5rem;
+  color: var(--darkText);
+  &&:active{
+    background-color: #f54900;
+    color: #7a2501;
   }
 }

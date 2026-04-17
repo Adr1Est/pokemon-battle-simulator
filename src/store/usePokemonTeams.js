@@ -43,6 +43,25 @@ export const usePokemonTeams = create()(
           return { ...team, team: newTeam }
         })
       })),
+
+      shuffleTeam: (teamId) => set((state) => ({
+        teams: state.teams.map((team) => {
+          if (team.id !== teamId) return team
+          const shuffled = [...team.team].sort(() => Math.random() - 0.5)
+          return { ...team, team: shuffled }
+        })
+      })),
+
+      sortTeamByAttack: (teamId) => set((state) => ({
+        teams: state.teams.map((team) => {
+          if (team.id !== teamId) return team
+          const sorted = [...team.team].sort((a, b) => {
+            const getAttack = (p) => p.stats.find((s) => s.name === "attack")?.baseStat ?? 0
+            return getAttack(b) - getAttack(a)
+          })
+          return { ...team, team: sorted }
+        })
+      }))
     }),
     { name: "pokemon-teams" }
   )
