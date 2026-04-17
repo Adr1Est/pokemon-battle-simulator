@@ -1,4 +1,4 @@
-import classes from "@/components/TeamsPage/TeamPokemonCard.module.css";
+import classes from "@/components/CreateTeamPage/TeamPokemonCard.module.css";
 import { useTeamBuilder } from "@/store";
 import { capitalize } from "@/utils/capitalize.utils";
 import { pokemonTypeEmojis } from "@/utils/pokemon.utils";

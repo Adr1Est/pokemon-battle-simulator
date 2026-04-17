@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import App from "@/App";
-import TeamsPage from "@/pages/TeamsPage";
+import CreateTeamPage from "@/pages/CreateTeamPage";
 import NotFoundPage from "@/pages/NotFoundPage";
 
 const router = createBrowserRouter([
@@ -8,7 +8,7 @@ const router = createBrowserRouter([
     path: "/",
     Component: App,
     children: [
-      { index: true, Component: TeamsPage },
+      { index: true, Component: CreateTeamPage },
       { path: "*", Component: NotFoundPage },
     ],
   },

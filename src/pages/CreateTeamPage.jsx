@@ -1,13 +1,13 @@
-import TeamPokemonCard from "@/components/TeamsPage/TeamPokemonCard";
+import TeamPokemonCard from "@/components/CreateTeamPage/TeamPokemonCard";
 import { useInfinitePokemon, usePokemonSearch, useSinglePokemonInfo } from "@/hooks/usePokemonData";
-import classes from "@/pages/TeamsPage.module.css";
+import classes from "@/pages/CreateTeamPage.module.css";
 import { usePokemonFilter, usePokemonTeams, useTeamBuilder } from "@/store";
 import { capitalize } from "@/utils/capitalize.utils";
 import { createPokemonTeamWithId, mapPokemon } from "@/utils/pokemon.utils";
 import { ArrowBigRight, CircleEllipsis, Loader, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 
-export default function TeamsPage() {
+export default function CreateTeamPage() {
   const inputFilterId = useId();
   const filter = usePokemonFilter((state) => state.filter);
   const setFilter = usePokemonFilter((state) => state.setFilter)
