@@ -73,6 +73,26 @@
   padding: 0;
 }
 
+.typeBtnGroup{
+  display: flex;
+  flex-direction: row;
+  gap: 0.3rem;
+  overflow-x: auto;
+  height: 50px;
+  scrollbar-color: #9f0712 var(--darkBgColor);
+  scrollbar-width: thin;
+}
+
+.typeBtnGroup > button {
+  border: 0;
+  background-color: #25292e;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  &&:active{
+    background-color: #01685f;
+  }
+}
+
 .pokemonList{
   position: relative;
   display: flex;

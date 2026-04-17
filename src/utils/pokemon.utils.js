@@ -26,6 +26,9 @@ export const pokemonTypeEmojis = {
   ground: "🌍",
   normal: "⚪",
   dragon: "🐉",
+  stellar: "⭐",
+  dark: "⚫",
+  unknown: "❔",
   fighting: "🥊",
 };
 

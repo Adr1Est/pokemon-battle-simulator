@@ -1,11 +1,12 @@
 import TeamPokemonCard from "@/components/CreateTeamPage/TeamPokemonCard";
-import { useInfinitePokemon, usePokemonSearch, useSinglePokemonInfo } from "@/hooks/usePokemonData";
+import { useInfinitePokemon, usePokemonSearch, usePokemonTypes, useSinglePokemonInfo } from "@/hooks/usePokemonData";
 import classes from "@/pages/CreateTeamPage.module.css";
 import { usePokemonFilter, usePokemonTeams, useTeamBuilder } from "@/store";
 import { capitalize } from "@/utils/capitalize.utils";
 import { createPokemonTeamWithId, mapPokemon } from "@/utils/pokemon.utils";
 import { ArrowBigRight, CircleEllipsis, Loader, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
+import { pokemonTypeEmojis } from "@/utils/pokemon.utils";
 
 export default function CreateTeamPage() {
   const inputFilterId = useId();
@@ -18,6 +19,7 @@ export default function CreateTeamPage() {
   const createTeam = usePokemonTeams((state) => state.createTeam);
   const [selectedUrl, setSelectedUrl] = useState(undefined);
   const { data: pokemonInfo, isLoading: isPokemonInfoLoading } = useSinglePokemonInfo(selectedUrl);
+  const { data: types, isLoading: isPokemonTypesLoading } = usePokemonTypes()
 
   const {
     data,
@@ -72,8 +74,16 @@ export default function CreateTeamPage() {
             <X />
           </button>
         </form>
-        <div>
-          
+        <div className={classes.typeBtnGroup}>
+          {
+            isPokemonTypesLoading
+              ? <p>Cargando tipos...</p>
+              : types.results.map((t) => (
+                  <button key={t.url} title={t.name}>
+                    {pokemonTypeEmojis[t.name]}
+                  </button>
+                ))
+          }
         </div>
         <div className={classes.pokemonList}>
           {
@@ -119,7 +129,6 @@ export default function CreateTeamPage() {
               <p className={classes.warn}>Los equipos deben ser de máximo 6 Pokemon. Elimina {teamLayout.length - 6}</p>
             )
           }
-          
         </div>
         <ul className={classes.renderTeamContainer}>
           {
