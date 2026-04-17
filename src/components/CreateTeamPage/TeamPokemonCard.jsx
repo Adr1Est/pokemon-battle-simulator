@@ -3,6 +3,7 @@ import { useTeamBuilder } from "@/store";
 import { capitalize } from "@/utils/capitalize.utils";
 import { pokemonTypeEmojis } from "@/utils/pokemon.utils";
 import { Trash2 } from "lucide-react";
+import pokeballImg from "/pokeball.png"
 
 export default function TeamPokemonCard({ id, name, image, types, stats}) {
   const removePokemonFromTeam = useTeamBuilder((state) => state.removePokemonFromTeam);
@@ -10,7 +11,7 @@ export default function TeamPokemonCard({ id, name, image, types, stats}) {
   return(
     <li className={`${classes.teamPokemonContainer} glassmorphism`}>
       <div className={classes.containerInfo1}>
-        <img src={image} alt={`Imagen del pokemon ${name}`} />
+        <img src={image || pokeballImg} alt={`Imagen del pokemon ${name}`} />
         <p>{capitalize(name)}</p>
         <div className={classes.typesContainer}>
           {types.map((t) => (

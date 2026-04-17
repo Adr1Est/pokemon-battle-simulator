@@ -13,6 +13,7 @@ export default function TeamsPage() {
               teams.map((t, i) => (
                 <TeamCard 
                   key={t.id}
+                  id={t.id}
                   index={i}
                   team={t.team}
                 />
