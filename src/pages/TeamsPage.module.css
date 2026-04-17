@@ -1,6 +1,5 @@
 .mainContainer {
   width: 80%;
-  border: 1px solid ;
   padding: 1rem;
   display: flex;
   flex-direction: row;
@@ -9,4 +8,6 @@
   max-height: 600px;
   overflow-y: auto;
   flex-wrap: wrap;
+  scrollbar-color: #9f0712 var(--darkBgColor);
+  scrollbar-width: thin;
 }
