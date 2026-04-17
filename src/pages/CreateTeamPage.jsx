@@ -97,10 +97,7 @@ export default function CreateTeamPage() {
                   <button 
                     key={t.url} 
                     title={t.name}
-                    onClick={() => {
-                      console.log(t.name, selectedType)
-                      handleTypeClick(t.name)
-                    }}
+                    onClick={() => handleTypeClick(t.name)}
                     className={selectedType === t.name ? classes.activeType : ""}
                   >
                     {pokemonTypeEmojis[t.name]}
