@@ -4,14 +4,17 @@ import { capitalize } from "@/utils/capitalize.utils";
 import { pokemonTypeEmojis } from "@/utils/pokemon.utils";
 import { Trash2 } from "lucide-react";
 import pokeballImg from "/pokeball.png"
+import { GripHorizontal } from "lucide-react";
 
 export default function TeamPokemonCard({ id, name, image, types, stats}) {
   const removePokemonFromTeam = useTeamBuilder((state) => state.removePokemonFromTeam);
 
   return(
     <li className={`${classes.teamPokemonContainer} glassmorphism`}>
+      
+      <img src={image || pokeballImg} alt={`Imagen del pokemon ${name}`} />
+
       <div className={classes.containerInfo1}>
-        <img src={image || pokeballImg} alt={`Imagen del pokemon ${name}`} />
         <p>{capitalize(name)}</p>
         <div className={classes.typesContainer}>
           {types.map((t) => (
@@ -21,8 +24,8 @@ export default function TeamPokemonCard({ id, name, image, types, stats}) {
           ))}
         </div>
       </div>
-      <div className={classes.containerInfo2}>
-        <ul className={classes.statsContainer}>
+
+      <ul className={classes.statsContainer}>
           {
             stats.map((s) => (
               <p key={s.name}>
@@ -30,7 +33,15 @@ export default function TeamPokemonCard({ id, name, image, types, stats}) {
               </p>
             ))
           }
-        </ul>
+      </ul>
+      
+      <div className={classes.btnGroup}>
+        <button
+          className={classes.dragPokemonButton}
+          onClick={""}
+        >
+          <GripHorizontal />
+        </button>
         <button
           className={classes.deletePokemonButton}
           onClick={() => removePokemonFromTeam(id)}
@@ -39,6 +50,7 @@ export default function TeamPokemonCard({ id, name, image, types, stats}) {
           <span>Quitar del equipo</span>
         </button>
       </div>
+      
     </li>
   )
 }
