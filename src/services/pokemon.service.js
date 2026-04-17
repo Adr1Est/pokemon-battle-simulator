@@ -19,3 +19,8 @@ export const fetchPokemonListByType = async (type) => {
   const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
   return response.json();
 }
+
+export const fetchPokemonTypes = async () => {
+  const response = await fetch(`https://pokeapi.co/api/v2/type`);
+  return response.json();
+}

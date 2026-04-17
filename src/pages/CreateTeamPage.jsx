@@ -72,6 +72,9 @@ export default function CreateTeamPage() {
             <X />
           </button>
         </form>
+        <div>
+          
+        </div>
         <div className={classes.pokemonList}>
           {
             isFetching 
