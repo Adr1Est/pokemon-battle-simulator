@@ -3,11 +3,18 @@ import { capitalize } from "@/utils/capitalize.utils"
 import { pokemonStatsParser, pokemonTypeEmojis } from "@/utils/pokemon.utils"
 import pokeballImg from "/pokeball.png"
 import { GripHorizontal } from "lucide-react"
+import { useRef } from "react"
+import { useDraggable } from "@dnd-kit/react"
 
 export default function SinglePokemonCard({ pokemon }) {
+  const handleRef = useRef(null)
+  const { ref } = useDraggable({ 
+    id: pokemon.id, 
+    handle: handleRef
+  })
   
   return (
-    <li className={classes.pokemonInfo}>
+    <li ref={ref} className={classes.pokemonInfo}>
         <img src={pokemon.image || pokeballImg} alt={`Imagen del pokemon ${pokemon.name}`} />
         <div className={classes.data1}>
           <h3>{capitalize(pokemon.name)}</h3>
@@ -27,7 +34,7 @@ export default function SinglePokemonCard({ pokemon }) {
           }
         </div>
         <div className={classes.buttons}>
-          <button className={classes.gripBtn}>
+          <button ref={handleRef} className={classes.gripBtn}>
             <GripHorizontal />
           </button>
         </div>
