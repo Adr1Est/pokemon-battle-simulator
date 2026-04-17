@@ -2,16 +2,10 @@ import TeamPokemonCard from "@/components/TeamsPage/TeamPokemonCard";
 import { useInfinitePokemon, usePokemonSearch, useSinglePokemonInfo } from "@/hooks/usePokemonData";
 import classes from "@/pages/TeamsPage.module.css";
 import { usePokemonFilter, usePokemonTeams, useTeamBuilder } from "@/store";
-import type { Pokemon } from "@/types/pokemon.types";
 import { capitalize } from "@/utils/capitalize.utils";
 import { createPokemonTeamWithId, mapPokemon } from "@/utils/pokemon.utils";
 import { ArrowBigRight, CircleEllipsis, Loader, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
-
-interface PokemonFromList {
-  name: string; 
-  url: string; 
-}
 
 export default function TeamsPage() {
   const inputFilterId = useId();
@@ -22,7 +16,7 @@ export default function TeamsPage() {
   const addPokemonToTeam = useTeamBuilder((state) => state.addPokemonToTeam);
   const resetTeam = useTeamBuilder((state) => state.resetTeam);
   const createTeam = usePokemonTeams((state) => state.createTeam);
-  const [selectedUrl, setSelectedUrl] = useState<string | undefined>(undefined);
+  const [selectedUrl, setSelectedUrl] = useState(undefined);
   const { data: pokemonInfo, isLoading: isPokemonInfoLoading } = useSinglePokemonInfo(selectedUrl);
 
   const {
@@ -52,7 +46,7 @@ export default function TeamsPage() {
   if(isError) return <p>Error al cargar datos...</p>;
 
   const infinitePokemon = data?.pages.flatMap(page => page.results) || [];
-  const searchPokemon = allPokemonList?.results.filter((p: PokemonFromList) => p.name.toLowerCase().includes(filter.toLowerCase())) || [];
+  const searchPokemon = allPokemonList?.results.filter((p) => p.name.toLowerCase().includes(filter.toLowerCase())) || [];
 
   const pokemonList = isFiltering ? searchPokemon : infinitePokemon;
 
@@ -83,7 +77,7 @@ export default function TeamsPage() {
             isFetching 
               ? <p>Buscando Pokemon...</p>
               : (
-                  pokemonList.map((pokemon: PokemonFromList) => (
+                  pokemonList.map((pokemon) => (
                     <div key={pokemon.name} className={`${classes.pokemonLink} glassmorphism`}>
                       <span>{capitalize(pokemon.name)}</span>
                       <button
@@ -129,7 +123,7 @@ export default function TeamsPage() {
             isPokemonInfoLoading
               ? <li>Cargando equipo...</li>
               : teamLayout.length > 0
-                ? teamLayout.map((p: Pokemon) => (
+                ? teamLayout.map((p) => (
                     <TeamPokemonCard
                       key={p.id}
                       id={p.id}

@@ -1,16 +1,7 @@
-import type { Pokemon } from "@/types/pokemon.types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface TeamBuilderStore {
-  teamLayout: Pokemon[];
-  
-  addPokemonToTeam: (pokemon: Pokemon) => void;
-  removePokemonFromTeam: (pokemonId: number) => void;
-  resetTeam: () => void;
-}
-
-export const useTeamBuilder = create<TeamBuilderStore>()(
+export const useTeamBuilder = create()(
   persist(
     (set) => ({
       teamLayout: [],
