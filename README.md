@@ -2,7 +2,7 @@
 
 ## Stack del proyecto
 
-![stack](https://go-skill-icons.vercel.app/api/icons?i=pnpm,vite,react,reactrouter,typescript,zustand,tanstack)
+![stack](https://go-skill-icons.vercel.app/api/icons?i=pnpm,vite,react,reactrouter,javascript,zustand,tanstack)
 
 ## Instalación
 
