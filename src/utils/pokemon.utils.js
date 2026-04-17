@@ -1,6 +1,4 @@
-import type { Pokemon, PokemonApiResponse } from "@/types/pokemon.types";
-
-export const mapPokemon = (data: PokemonApiResponse): Pokemon => ({
+export const mapPokemon = (data) => ({
   id: data.id,
   name: data.name,
   image: data.sprites.other["official-artwork"].front_default,
@@ -11,7 +9,7 @@ export const mapPokemon = (data: PokemonApiResponse): Pokemon => ({
   })),
 });
 
-export const pokemonTypeEmojis: Record<string, string> = {
+export const pokemonTypeEmojis = {
   fire: "🔥",
   water: "💧",
   grass: "🌿",
@@ -31,7 +29,7 @@ export const pokemonTypeEmojis: Record<string, string> = {
   fighting: "🥊",
 };
 
-export const createPokemonTeamWithId = (pokemonTeam: Pokemon[]) => {
+export const createPokemonTeamWithId = (pokemonTeam) => {
   const id = crypto.randomUUID();
   return {
     id,
