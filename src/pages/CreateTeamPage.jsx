@@ -1,5 +1,5 @@
 import TeamPokemonCard from "@/components/CreateTeamPage/TeamPokemonCard";
-import { useInfinitePokemon, usePokemonSearch, usePokemonTypes, useSinglePokemonInfo } from "@/hooks/usePokemonData";
+import { useInfinitePokemon, usePokemonSearch, usePokemonTypes, useSearchPokemonByType, useSinglePokemonInfo } from "@/hooks/usePokemonData";
 import classes from "@/pages/CreateTeamPage.module.css";
 import { usePokemonFilter, usePokemonTeams, useTeamBuilder } from "@/store";
 import { capitalize } from "@/utils/capitalize.utils";
@@ -9,6 +9,7 @@ import { useEffect, useId, useState } from "react";
 import { pokemonTypeEmojis } from "@/utils/pokemon.utils";
 
 export default function CreateTeamPage() {
+  const [selectedType, setSelectedType] = useState(null)
   const inputFilterId = useId();
   const filter = usePokemonFilter((state) => state.filter);
   const setFilter = usePokemonFilter((state) => state.setFilter)
@@ -20,6 +21,7 @@ export default function CreateTeamPage() {
   const [selectedUrl, setSelectedUrl] = useState(undefined);
   const { data: pokemonInfo, isLoading: isPokemonInfoLoading } = useSinglePokemonInfo(selectedUrl);
   const { data: types, isLoading: isPokemonTypesLoading } = usePokemonTypes()
+  const { data: pokemonByType, isFetching: isFetchingByType } = useSearchPokemonByType(selectedType)
 
   const {
     data,
@@ -30,13 +32,21 @@ export default function CreateTeamPage() {
     isError,
   } = useInfinitePokemon();
 
-  const isFiltering = filter.trim().length > 0;
-  const { data: allPokemonList, isFetching } = usePokemonSearch(isFiltering);
+  const isFilteringByName = filter.trim().length > 0;
+  const isFilteringByType = !!selectedType;
+  const { data: allPokemonList, isFetching: isFetchingSearch } = usePokemonSearch(isFilteringByName);
+
+  const isFetching = isFetchingSearch || isFetchingByType;
 
   const handleClick = () => {
     createTeam(createPokemonTeamWithId(teamLayout));
     resetTeam();
   }
+
+  const handleTypeClick = (typeName) => {
+    setSelectedType(prev => prev === typeName ? null : typeName)
+  }
+
 
   useEffect(() => {
     if(pokemonInfo){
@@ -49,8 +59,13 @@ export default function CreateTeamPage() {
 
   const infinitePokemon = data?.pages.flatMap(page => page.results) || [];
   const searchPokemon = allPokemonList?.results.filter((p) => p.name.toLowerCase().includes(filter.toLowerCase())) || [];
+  const typePokemon = pokemonByType?.pokemon.map((p) => p.pokemon) || []; 
 
-  const pokemonList = isFiltering ? searchPokemon : infinitePokemon;
+  const pokemonList = isFilteringByName
+    ? searchPokemon
+    : isFilteringByType
+      ? typePokemon
+      : infinitePokemon;
 
   return(
     <div className={classes.teamsMainContainer}>
@@ -79,7 +94,15 @@ export default function CreateTeamPage() {
             isPokemonTypesLoading
               ? <p>Cargando tipos...</p>
               : types.results.map((t) => (
-                  <button key={t.url} title={t.name}>
+                  <button 
+                    key={t.url} 
+                    title={t.name}
+                    onClick={() => {
+                      console.log(t.name, selectedType)
+                      handleTypeClick(t.name)
+                    }}
+                    className={selectedType === t.name ? classes.activeType : ""}
+                  >
                     {pokemonTypeEmojis[t.name]}
                   </button>
                 ))
@@ -103,7 +126,7 @@ export default function CreateTeamPage() {
                 )
           }
           {
-            !isFiltering && (
+            !isFilteringByName && !isFilteringByType && (
               <button
                 className={classes.loadButton}
                 onClick={() => fetchNextPage()}

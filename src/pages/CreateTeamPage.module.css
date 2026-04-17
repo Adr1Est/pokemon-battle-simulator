@@ -93,6 +93,10 @@
   }
 }
 
+.typeBtnGroup .activeType {
+  background-color: #01685f;
+}
+
 .pokemonList{
   position: relative;
   display: flex;
