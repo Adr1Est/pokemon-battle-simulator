@@ -1,10 +1,7 @@
 import classes from "@/components/TeamsPage/TeamCard.module.css"
 import { usePokemonTeams } from "@/store"
-import { capitalize } from "@/utils/capitalize.utils"
-import { pokemonStatsParser, pokemonTypeEmojis } from "@/utils/pokemon.utils"
-import { GripHorizontal, Trash2 } from "lucide-react"
+import { Trash2 } from "lucide-react"
 import { useState } from "react"
-import pokeballImg from "/pokeball.png"
 import { useDroppable } from "@dnd-kit/react"
 import SinglePokemonCard from "./SinglePokemonCard"
 
