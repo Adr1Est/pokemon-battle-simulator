@@ -1,19 +1,10 @@
 import classes from "@/components/TeamsPage/TeamPokemonCard.module.css";
 import { useTeamBuilder } from "@/store";
-import type { Stat } from "@/types/pokemon.types";
 import { capitalize } from "@/utils/capitalize.utils";
 import { pokemonTypeEmojis } from "@/utils/pokemon.utils";
 import { Trash2 } from "lucide-react";
 
-interface Props {
-  id: number;
-  name: string;
-  image: string;
-  types: string[];
-  stats: Stat[];
-}
-
-export default function TeamPokemonCard({ id, name, image, types, stats}: Props) {
+export default function TeamPokemonCard({ id, name, image, types, stats}) {
   const removePokemonFromTeam = useTeamBuilder((state) => state.removePokemonFromTeam);
 
   return(
@@ -22,7 +13,7 @@ export default function TeamPokemonCard({ id, name, image, types, stats}: Props)
         <img src={image} alt={`Imagen del pokemon ${name}`} />
         <p>{capitalize(name)}</p>
         <div className={classes.typesContainer}>
-          {types.map((t: string) => (
+          {types.map((t) => (
             <span key={t} title={t}>
               {pokemonTypeEmojis[t]}
             </span>
@@ -32,7 +23,7 @@ export default function TeamPokemonCard({ id, name, image, types, stats}: Props)
       <div className={classes.containerInfo2}>
         <ul className={classes.statsContainer}>
           {
-            stats.map((s: Stat) => (
+            stats.map((s) => (
               <p key={s.name}>
                 {`${capitalize(s.name)}: ${s.baseStat}`}
               </p>

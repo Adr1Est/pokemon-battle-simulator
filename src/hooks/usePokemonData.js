@@ -13,7 +13,7 @@ export const useInfinitePokemon = () => {
   });
 }
 
-export const usePokemonSearch = (enabled: boolean) => {
+export const usePokemonSearch = (enabled) => {
   return useQuery({
     queryKey: ["pokemonSearch"],
     queryFn: fetchAllPokemon,
@@ -21,10 +21,10 @@ export const usePokemonSearch = (enabled: boolean) => {
   });
 };
 
-export const useSinglePokemonInfo = (pokemonUrl?: string) => {
+export const useSinglePokemonInfo = (pokemonUrl) => {
   return useQuery({
     queryKey: ["singlePokemon", pokemonUrl],
-    queryFn: () => fetchPokemonInfo(pokemonUrl!),
+    queryFn: () => fetchPokemonInfo(pokemonUrl),
     enabled: !!pokemonUrl, // Solo se ejecutará si hay URL
   });
 };

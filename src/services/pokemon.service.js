@@ -10,7 +10,7 @@ export const fetchAllPokemon = async () => {
   return response.json();
 };
 
-export const fetchPokemonInfo = async (pokemonUrl: string) => {
+export const fetchPokemonInfo = async (pokemonUrl) => {
   const response = await fetch (pokemonUrl);
   return response.json();
 }
