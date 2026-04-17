@@ -29,6 +29,15 @@ export const pokemonTypeEmojis = {
   fighting: "🥊",
 };
 
+export const pokemonStatsParser = {
+  "hp": "hp",
+  "defense": "def",
+  "special-defense": "sp-def",
+  "attack": "at",
+  "special-attack": "sp-at",
+  "speed": "spd",
+}
+
 export const createPokemonTeamWithId = (pokemonTeam) => {
   const id = crypto.randomUUID();
   return {
