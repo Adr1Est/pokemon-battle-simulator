@@ -33,6 +33,16 @@ export const usePokemonTeams = create()(
       })),
 
       resetTeams: () => set(() => ({ teams: [] })),
+
+      reorderPokemon: (teamId, fromIndex, toIndex) => set((state) => ({
+        teams: state.teams.map((team) => {
+          if (team.id !== teamId) return team
+          const newTeam = [...team.team]
+          const [moved] = newTeam.splice(fromIndex, 1)
+          newTeam.splice(toIndex, 0, moved)
+          return { ...team, team: newTeam }
+        })
+      })),
     }),
     { name: "pokemon-teams" }
   )

@@ -4,15 +4,18 @@ import { pokemonStatsParser, pokemonTypeEmojis } from "@/utils/pokemon.utils"
 import pokeballImg from "/pokeball.png"
 import { GripHorizontal } from "lucide-react"
 import { useRef } from "react"
-import { useDraggable } from "@dnd-kit/react"
+import { useDraggable, useDroppable } from "@dnd-kit/react"
 
 export default function SinglePokemonCard({ pokemon }) {
   const handleRef = useRef(null)
-  const { ref } = useDraggable({ 
-    id: pokemon.id, 
-    handle: handleRef
-  })
+  const { ref: draggableRef } = useDraggable({ id: pokemon.id, handle: handleRef })
+  const { ref: droppableRef } = useDroppable({ id: pokemon.id }) 
   
+  const ref = (node) => {
+    draggableRef(node)
+    droppableRef(node)
+  }
+
   return (
     <li ref={ref} className={classes.pokemonInfo}>
         <img src={pokemon.image || pokeballImg} alt={`Imagen del pokemon ${pokemon.name}`} />
