@@ -11,6 +11,11 @@ export const fetchAllPokemon = async () => {
 };
 
 export const fetchPokemonInfo = async (pokemonUrl) => {
-  const response = await fetch (pokemonUrl);
+  const response = await fetch(pokemonUrl);
+  return response.json();
+}
+
+export const fetchPokemonListByType = async (type) => {
+  const response = await fetch(`https://pokeapi.co/api/v2/type/${type}`);
   return response.json();
 }
