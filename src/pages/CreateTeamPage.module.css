@@ -14,21 +14,49 @@
   flex-direction: row;
   padding: 0.5rem;
   justify-content: space-between;
-  && > button{
-    border: 0;
-    background-color: #009689;
-    color: var(--darkText);
-    font-size: 1.1rem;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
-    align-self: start;
-    &&:hover{
-      background-color: #02b8a8;
-    }
-    &&:disabled{
-      background-color: #496967;
-      color: #55817e;
-    }
+  && > div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.3rem;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.createTeamBtn{
+  border: 0;
+  background-color: #009689;
+  color: var(--darkText);
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  align-self: start;
+  &&:hover{
+    background-color: #02b8a8;
+  }
+  &&:disabled{
+    background-color: #496967;
+    color: #55817e;
+  }
+}
+
+.discardBtn{
+  border: 0;
+  background-color: #fb2c36;
+  color: var(--darkText);
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &&:hover{
+    background-color: #ffa2a2;
+  }
+  &&:disabled{
+    background-color: #fb2c3669;
+    color: #fb2c3642;
   }
 }
 

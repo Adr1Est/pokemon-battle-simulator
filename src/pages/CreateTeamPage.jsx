@@ -155,13 +155,22 @@ export default function CreateTeamPage() {
       <div className={classes.teamBuilderMainContainer}>
         <div className={`${classes.headerContainer} glassmorphism`}>
           <h1>Crea tu equipo</h1>
-          <button
-            onClick={handleClick}
-            disabled={teamLayout.length !== 6}
-          >
-            Crear equipo
-          </button>
-          
+          <div>
+            <button
+              onClick={""}
+              className={classes.discardBtn}
+              disabled={teamLayout.length === 0}
+            >
+              <X />
+            </button>
+            <button
+              onClick={handleClick}
+              className={classes.createTeamBtn}
+              disabled={teamLayout.length !== 6}
+            >
+              Crear equipo
+            </button>
+          </div>
           <p className={`${classes.teamInfo} ${teamLayout.length > 6 ? classes.warn : ""}`}>{`${teamLayout.length}/6`}</p>    
         </div>
         <DragDropProvider onDragEnd={handleDragEnd}>
