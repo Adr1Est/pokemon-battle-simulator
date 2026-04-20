@@ -8,6 +8,7 @@ import { ArrowBigRight, CircleEllipsis, Loader, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import { pokemonTypeEmojis } from "@/utils/pokemon.utils";
 import { DragDropProvider } from "@dnd-kit/react";
+import { useNavigate } from "react-router";
 
 export default function CreateTeamPage() {
   const [selectedType, setSelectedType] = useState(null)
@@ -24,6 +25,8 @@ export default function CreateTeamPage() {
   const { data: types, isLoading: isPokemonTypesLoading } = usePokemonTypes()
   const { data: pokemonByType, isFetching: isFetchingByType } = useSearchPokemonByType(selectedType)
   const reorderTeamLayout = useTeamBuilder((state) => state.reorderTeamLayout)
+
+  const navigate = useNavigate()
 
   const handleDragEnd = (event) => {
     const { source, target } = event.operation
@@ -54,6 +57,7 @@ export default function CreateTeamPage() {
   const handleClick = () => {
     createTeam(createPokemonTeamWithId(teamLayout));
     resetTeam();
+    navigate("/teams")
   }
 
   const handleTypeClick = (typeName) => {
