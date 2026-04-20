@@ -157,7 +157,7 @@ export default function CreateTeamPage() {
           <h1>Crea tu equipo</h1>
           <div>
             <button
-              onClick={""}
+              onClick={resetTeam}
               className={classes.discardBtn}
               disabled={teamLayout.length === 0}
             >
