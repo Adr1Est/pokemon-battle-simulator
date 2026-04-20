@@ -29,6 +29,9 @@ export default function TeamsPage() {
 
   return (
     <div className={classes.mainContainer}>
+      <div className={classes.btnGroup}>
+        <button className={classes.fightBtn}>Pelear</button>
+      </div>
       <DragDropProvider onDragEnd={handleDragEnd}>
         {
           teams.length > 0

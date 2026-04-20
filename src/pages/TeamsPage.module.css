@@ -11,3 +11,30 @@
   scrollbar-color: #9f0712 var(--darkBgColor);
   scrollbar-width: thin;
 }
+
+.btnGroup{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fightBtn {
+  width: 70%;
+  height: 70px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: #009689;
+  color: var(--darkText);
+  font-size: 1.1rem;
+  font-weight: 600;
+  &&:hover{
+    background-color: #02b8a8;
+  }
+  &&:active{
+    background-color: #009689;
+    color: #02665e;
+  }
+}
