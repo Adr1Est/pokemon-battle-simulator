@@ -204,6 +204,20 @@
   scrollbar-width: thin;
 }
 
+@media (max-width: 768px) { 
+  .teamsMainContainer{
+    flex-direction: column;
+    width: 100%;
+  }
+  .filterRender{
+    width: 100%;
+  }
+  .pokemonList{
+    max-height: 150px;
+    width: 100%;
+  }
+}
+
 @media (prefers-color-scheme: light){
   .pokemonLink{
     color: var(--lightText);
