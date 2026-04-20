@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import react from 'eslint-plugin-react'
+import jest from "eslint-plugin-jest"
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -33,6 +34,13 @@ export default defineConfig([
     },
     settings: {
       react: { version: 'detect' },
+    },
+  },
+  {
+    files: ["**/*.test.{js,jsx}"],
+    plugins: { jest },
+    languageOptions: {
+      globals: jest.environments.globals.globals,
     },
   },
 ])
