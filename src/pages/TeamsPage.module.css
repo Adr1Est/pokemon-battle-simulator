@@ -37,4 +37,8 @@
     background-color: #009689;
     color: #02665e;
   }
+  &&:disabled{
+    background-color: #00968942;
+    color: #02665e6e;
+  }
 }

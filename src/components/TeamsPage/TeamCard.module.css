@@ -53,6 +53,24 @@ h2{
   }
 }
 
+.selectBtn{
+  border: 0;
+  width: 100px;
+  background-color: #104e64;
+  color: var(--darkText);
+  border-radius: 0.5rem;
+  padding: 0;
+  cursor: pointer;
+  height: 30px;
+  &&:hover{
+    background-color: #00b8db;
+  }
+}
+
+.active{
+  background-color: #00b8db;
+}
+
 .shuffleBtn{
   border: 0;
   background-color: #ad46ff;

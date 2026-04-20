@@ -4,8 +4,9 @@ import { Trash2, Shuffle, Swords } from "lucide-react"
 import { useState } from "react"
 import { useDroppable } from "@dnd-kit/react"
 import SinglePokemonCard from "./SinglePokemonCard"
+import { HandFist, X } from "lucide-react"
 
-export default function TeamCard({ id, index, team }) {
+export default function TeamCard({ id, index, team, isSelected, onSelect }) {
   const [isSecondChance, setIsSecondChance] = useState(false)
   const deleteTeam = usePokemonTeams((state) => state.deleteTeam)
   const shuffleTeam = usePokemonTeams((state) => state.shuffleTeam)
@@ -45,9 +46,17 @@ export default function TeamCard({ id, index, team }) {
             </button>
           </div>
         </div>
-        <button className={classes.trashBtn} onClick={handleDeleteTeam}>
-          {isSecondChance ? "¿Estás seguro?" : <Trash2 />}
-        </button>
+        <div>
+          <button className={classes.trashBtn} onClick={handleDeleteTeam}>
+            {isSecondChance ? "¿Estás seguro?" : <Trash2 />}
+          </button>
+          <button
+              className={`${classes.selectBtn} ${isSelected ? classes.active : ""}`}
+              onClick={() => onSelect(id)}
+            >
+              {isSelected ? <X /> : <HandFist />}
+            </button>
+        </div>
       </div>
     </div>
   )
