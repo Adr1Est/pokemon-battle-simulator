@@ -216,6 +216,9 @@
     max-height: 150px;
     width: 100%;
   }
+  .renderTeamContainer{
+    max-height: 300px;
+  }
 }
 
 @media (prefers-color-scheme: light){
