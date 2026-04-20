@@ -1,0 +1,94 @@
+/* components/TeamsPage/BattleResultModal.module.css */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  position: relative;
+  background: #1a1a2e;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.winner {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.rounds {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.round {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.vs {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.won {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.lost {
+  color: #f44336;
+  text-decoration: line-through;
+}
+
+.summary {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-around;
+}
+
+.teamSummary {
+  text-align: center;
+}
+
+.pokemon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pokemonImg {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.won .pokemonImg {
+  filter: none;
+}
+
+.lost .pokemonImg {
+  filter: grayscale(100%);
+}

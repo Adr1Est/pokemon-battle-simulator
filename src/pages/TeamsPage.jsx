@@ -3,11 +3,14 @@ import TeamCard from "@/components/TeamsPage/TeamCard"
 import classes from "@/pages/TeamsPage.module.css"
 import { usePokemonTeams } from "@/store"
 import { DragDropProvider } from "@dnd-kit/react"
+import { simulateTeamBattle } from "@/utils/battle.utils"
+import BattleResultModal from "@/components/TeamsPage/BattleResultModal"
 
 export default function TeamsPage() {
   const teams = usePokemonTeams((state) => state.teams)
   const reorderPokemon = usePokemonTeams((state) => state.reorderPokemon)
   const [selectedTeams, setSelectedTeams] = useState([])
+  const [battleResult, setBattleResult] = useState(null)
 
   const handleSelectTeam = (teamId) => {
     setSelectedTeams((prev) => {
@@ -15,6 +18,21 @@ export default function TeamsPage() {
       if(prev.length === 2) return prev
       return [...prev, teamId]
     })
+  }
+
+  const handleFight = () => {
+    const [teamAData, teamBData] = selectedTeams.map((id) => teams.find((t) => t.id === id))
+    const result = simulateTeamBattle(teamAData.team, teamBData.team)
+    setBattleResult({
+      ...result,
+      teamAName: `Equipo ${teams.indexOf(teamAData) + 1}`,
+      teamBName: `Equipo ${teams.indexOf(teamBData) + 1}`,
+    })
+  }
+
+  const handleCloseModal = () => {
+    setBattleResult(null)
+    setSelectedTeams([])
   }
 
   const handleDragEnd = (event) => {
@@ -39,11 +57,19 @@ export default function TeamsPage() {
 
   return (
     <div className={classes.mainContainer}>
+      {
+        battleResult && (  // 👈
+          <BattleResultModal
+            result={battleResult}
+            onClose={handleCloseModal}
+          />
+        )
+      }
       <div className={classes.btnGroup}>
         <button 
           className={classes.fightBtn}
           disabled={selectedTeams.length !== 2}
-          onClick={() => console.log(selectedTeams)}
+          onClick={handleFight}
         >
           Pelear
         </button>
