@@ -19,11 +19,14 @@ pnpm run dev
 |Dependecia                    |Versión              |
 |------------------------------|---------------------|
 |Node.js                       |22.20.00             |
+|Vite                          |8.0.4                |
 |React                         |19.2.4               |
 |React Router                  |7.14.1               |
 |Zustand                       |5.0.12               |
 |Tanstack Query (React Query)  |5.99.0               |
 |dnd-kit/react                 |0.4.0                |
+|Jest                          |30.3.0               |
+|React Testing Library         |16.3.2               |
 
 ## Estructura
 
