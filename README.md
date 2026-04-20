@@ -23,6 +23,7 @@ pnpm run dev
 |React Router                  |7.14.1               |
 |Zustand                       |5.0.12               |
 |Tanstack Query (React Query)  |5.99.0               |
+|dnd-kit/react                 |0.4.0                |
 
 ## Estructura
 
