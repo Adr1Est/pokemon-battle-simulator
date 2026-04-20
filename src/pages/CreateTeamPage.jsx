@@ -7,6 +7,7 @@ import { createPokemonTeamWithId, mapPokemon } from "@/utils/pokemon.utils";
 import { ArrowBigRight, CircleEllipsis, Loader, X } from "lucide-react";
 import { useEffect, useId, useState } from "react";
 import { pokemonTypeEmojis } from "@/utils/pokemon.utils";
+import { DragDropProvider } from "@dnd-kit/react";
 
 export default function CreateTeamPage() {
   const [selectedType, setSelectedType] = useState(null)
@@ -22,6 +23,18 @@ export default function CreateTeamPage() {
   const { data: pokemonInfo, isLoading: isPokemonInfoLoading } = useSinglePokemonInfo(selectedUrl);
   const { data: types, isLoading: isPokemonTypesLoading } = usePokemonTypes()
   const { data: pokemonByType, isFetching: isFetchingByType } = useSearchPokemonByType(selectedType)
+  const reorderTeamLayout = useTeamBuilder((state) => state.reorderTeamLayout)
+
+  const handleDragEnd = (event) => {
+    const { source, target } = event.operation
+    if (!target || source.id === target.id) return
+
+    const fromIndex = teamLayout.findIndex((p) => p.id === source.id)
+    const toIndex = teamLayout.findIndex((p) => p.id === target.id)
+    if (toIndex === -1) return
+
+    reorderTeamLayout(fromIndex, toIndex)
+  }
 
   const {
     data,
@@ -147,24 +160,26 @@ export default function CreateTeamPage() {
           
           <p className={`${classes.teamInfo} ${teamLayout.length > 6 ? classes.warn : ""}`}>{`${teamLayout.length}/6`}</p>    
         </div>
-        <ul className={classes.renderTeamContainer}>
-          {
-            isPokemonInfoLoading
-              ? <li>Cargando equipo...</li>
-              : teamLayout.length > 0
-                ? teamLayout.map((p) => (
-                    <TeamPokemonCard
-                      key={p.id}
-                      id={p.id}
-                      name={p.name}
-                      image={p.image}
-                      types={p.types}
-                      stats={p.stats}
-                    />
-                  ))
-                : <li>Selecciona los Pokemon que quieres en tu equipo</li>
-          }
-        </ul>
+        <DragDropProvider onDragEnd={handleDragEnd}>
+          <ul className={classes.renderTeamContainer}>
+            {
+              isPokemonInfoLoading
+                ? <li>Cargando equipo...</li>
+                : teamLayout.length > 0
+                  ? teamLayout.map((p) => (
+                      <TeamPokemonCard
+                        key={p.id}
+                        id={p.id}
+                        name={p.name}
+                        image={p.image}
+                        types={p.types}
+                        stats={p.stats}
+                      />
+                    ))
+                  : <li>Selecciona los Pokemon que quieres en tu equipo</li>
+            }
+          </ul>
+        </DragDropProvider>
       </div>
     </div>
   )

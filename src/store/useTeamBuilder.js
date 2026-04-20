@@ -15,7 +15,14 @@ export const useTeamBuilder = create()(
         teamLayout: state.teamLayout.filter((p) => p.id !== pokemonId),
       })),
 
-      resetTeam: () => set(() => ({ teamLayout: [] }))
+      resetTeam: () => set(() => ({ teamLayout: [] })),
+
+      reorderTeamLayout: (fromIndex, toIndex) => set((state) => {
+        const newLayout = [...state.teamLayout]
+        const [moved] = newLayout.splice(fromIndex, 1)
+        newLayout.splice(toIndex, 0, moved)
+        return { teamLayout: newLayout }
+      }),
     }),
     { name: "wip-team" }
   )
