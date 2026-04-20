@@ -5,8 +5,10 @@ module.exports = {
     "^.+\\.[jt]sx?$": "babel-jest",
   },
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
-    "\\.(css|module\\.css)$": "identity-obj-proxy",
+    "\\.module\\.css$": "identity-obj-proxy",
+    "\\.css$": "identity-obj-proxy",
+    "^/.*\\.(png|jpg|svg)$": "<rootDir>/src/__mocks__/fileMock.js",
     "\\.(png|jpg|svg)$": "<rootDir>/src/__mocks__/fileMock.js",
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
 }
